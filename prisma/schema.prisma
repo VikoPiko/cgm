@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId            String        @id @default(uuid())
+  email             String        @unique
+  password          String
+  address           String
+  dwollaCustomerUrl String        @default("")
+  dwollaCustomerId  String        @default("")
+  firstName         String
+  lastName          String
+  city              String
+  postalCode        String
+  dateOfBirth       String
+  ssn               String
+  state             String
+  createdAt         DateTime      @default(now())
+  transactions      Transaction[]
+  Banks             Banks[]
+  Loans             Loans[]
+}
+
+model Transaction {
+  id         String   @id @default(uuid())
+  userId     String
+  amount     Float
+  recieverId String
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [userId])
+}
+
+model Banks {
+  accountId        String @id @default(uuid())
+  bankId           String
+  accessToken      String
+  fundingSourceUrl String
+  shareableId      String
+  userId           String
+  user             User   @relation(fields: [userId], references: [userId])
+}
+
+model Loans {
+  loanId       String @id @default(uuid())
+  principal    Float
+  interestRate Float
+  loanTerm     String
+  loanPayments Float
+  userId       String
+  user         User   @relation(fields: [userId], references: [userId])
+}
