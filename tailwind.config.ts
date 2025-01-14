@@ -10,6 +10,10 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+			skyBlue: '#88BFCF',
+			cerulian: '#1282a2',
+			indigoDye: '#034078',
+			pennBlue: '#001F54',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
