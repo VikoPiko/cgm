@@ -17,9 +17,9 @@ export default async function middleware(req: NextRequest) {
     if (cookie) {
         session = await decrypt(cookie);
     }
-
+    
     // Only proceed with route checks if session is available
-    if (isProtectedRoute && !session?.userId) {
+    if (isProtectedRoute && !session?.userId) {3
         return NextResponse.redirect(new URL("/home", req.nextUrl));
     }
 

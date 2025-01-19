@@ -1,6 +1,4 @@
 import prisma from "../prisma";
-import { cookies } from "next/headers";
-import bcrypt from 'bcrypt'
 
 interface User {
     email: string;
@@ -11,28 +9,49 @@ interface User {
     postalCode: string;
     ssn: string;
     dateOfBirth: string;
-    dowllaCustomerId: string;
-    dwollaCustomerUrl: string;
     firstName: string;
     lastName: string;
 }
 
-export async function createUser(data: User)
-{
+// export async function createUser(data: User)
+// {
+//     try {
+//         const hashedPassword = await bcrypt.hash(data.password, 10)
+//         const user = await prisma.user.create({
+//             data:{
+//                 ...data,
+//                 password: hashedPassword
+//             }
+//         })
+//         return user;
+//     }  catch (error) {
+//         console.log(error)
+//         console.error("Error creating user:", error);
+//         throw error;
+//       }
+// }
+// lib/actions/user.actions.ts
+
+export async function createUser(data: User) {
     try {
-        const hashedPassword = await bcrypt.hash(data.password, 10)
-        const user = await prisma.user.create({
-            data:{
-                ...data,
-                password: hashedPassword
-            }
-        })
-        return user;
-    }  catch (error) {
-        console.error("Error creating user:", error);
-        throw error;
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to create user');
       }
-}
+  
+      const user = await response.json();
+      return user;
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw error;
+    }
+  }
+  
 
 export async function getAllUsers(){
     try {

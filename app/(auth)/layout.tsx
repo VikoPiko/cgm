@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Header from "@/components/Header"; // Adjust the path if needed
 
 export default function RootLayout({
   children,
@@ -6,18 +6,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex min-h-screen w-full justify-between font-inter">
-      {children}
-      <div className="auth-asset">
-        <div>
-          {/* <Image
-            src="/icons/auth-image.svg"
-            alt="Auth Image"
-            width={500}
-            height={500}
-          /> */}
-        </div>
-      </div>
-    </main>
+    <div className="flex min-h-screen flex-col">
+      {/* Include the header at the top */}
+      <header className="sticky top-0 bg-indigoDye text-white py-2 z-10">
+        <Header />
+      </header>
+      {/* Main content area */}
+      <main className="flex flex-grow w-full justify-between font-inter ">
+        {children}
+      </main>
+    </div>
   );
 }

@@ -59,7 +59,13 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		  backgroundImage: {
+			"bank-gradient": "linear-gradient(90deg, #0179FE 0%, #4893FF 100%)",
+			"gradient-mesh": "url('/icons/cbg.svg')",
+			"bank-green-gradient":
+			  "linear-gradient(90deg, #01797A 0%, #489399 100%)",
+		  },
   	}
   },
   plugins: [require("tailwindcss-animate")],

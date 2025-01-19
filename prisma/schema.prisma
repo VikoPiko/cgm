@@ -14,33 +14,52 @@ datasource db {
 }
 
 model User {
-  userId            String        @id @default(uuid())
-  email             String        @unique
-  password          String
-  address           String
-  dwollaCustomerUrl String        @default("")
-  dwollaCustomerId  String        @default("")
-  firstName         String
-  lastName          String
-  city              String
-  postalCode        String
-  dateOfBirth       String
-  ssn               String
-  state             String
-  createdAt         DateTime      @default(now())
-  transactions      Transaction[]
-  Banks             Banks[]
-  Loans             Loans[]
+  userId       String        @id @default(uuid())
+  email        String        @unique
+  password     String
+  address      String
+  firstName    String
+  lastName     String
+  city         String
+  postalCode   String
+  dateOfBirth  String
+  ssn          String
+  state        String
+  createdAt    DateTime      @default(now())
+  transactions Transaction[]
+  Banks        Banks[]
+  Loans        Loans[]
 }
 
 model Transaction {
-  id         String   @id @default(uuid())
-  userId     String
-  amount     Float
-  recieverId String
-  createdAt  DateTime @default(now())
+  id             String   @id @default(uuid())
+  userId         String
+  name           String
+  paymentChannel String
+  type           String
+  accountId      String
+  amount         Float
+  pending        Boolean
+  category       String
+  date           DateTime @default(now())
+  image          String
+  createdAt      DateTime @default(now())
+  channel        String
+  senderBankId   String
+  receiverBankId String
+  user           User     @relation(fields: [userId], references: [userId])
+}
 
-  user User @relation(fields: [userId], references: [userId])
+model Accounts {
+  id               String @id
+  availableBalance Float
+  currentBalance   Float
+  officialName     String
+  mask             String
+  institutionId    String
+  name             String
+  type             String
+  subtype          String
 }
 
 model Banks {
