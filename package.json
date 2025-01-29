@@ -23,6 +23,7 @@
     "lucide-react": "^0.471.0",
     "mysql": "^2.18.1",
     "next": "14.2.16",
+    "plaid": "^30.0.0",
     "prisma": "^6.2.1",
     "react": "^18",
     "react-chartjs-2": "^5.3.0",
@@ -30,6 +31,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.54.2",
     "react-i18next": "^15.4.0",
+    "react-plaid-link": "^3.6.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"

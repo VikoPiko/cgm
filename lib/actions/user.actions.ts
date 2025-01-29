@@ -1,5 +1,14 @@
 import prisma from "../prisma";
 
+import {
+  CountryCode,
+  ProcessorTokenCreateRequest,
+  ProcessorTokenCreateRequestProcessorEnum,
+  Products,
+} from "plaid";
+
+import { plaidClient } from "@/lib/plaid";
+
 interface User {
     email: string;
     password: string;
@@ -12,25 +21,6 @@ interface User {
     firstName: string;
     lastName: string;
 }
-
-// export async function createUser(data: User)
-// {
-//     try {
-//         const hashedPassword = await bcrypt.hash(data.password, 10)
-//         const user = await prisma.user.create({
-//             data:{
-//                 ...data,
-//                 password: hashedPassword
-//             }
-//         })
-//         return user;
-//     }  catch (error) {
-//         console.log(error)
-//         console.error("Error creating user:", error);
-//         throw error;
-//       }
-// }
-// lib/actions/user.actions.ts
 
 export async function createUser(data: User) {
     try {
@@ -51,7 +41,6 @@ export async function createUser(data: User) {
       throw error;
     }
   }
-  
 
 export async function getAllUsers(){
     try {
@@ -79,7 +68,6 @@ export async function getUserByEmail(email: string){
 
 export async function updateUser(email: string, data: User){}
 
-
 export async function deleteUser(userId: string) {
     try {
       const user = await prisma.user.delete({ where: { userId } });
@@ -89,3 +77,4 @@ export async function deleteUser(userId: string) {
       throw error;
     }
   }
+

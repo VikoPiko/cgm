@@ -77,8 +77,6 @@ const Main = () => {
           </div>
         </section>
       </div>
-
-      <RightSidebar user={user} />
     </main>
   );
 };

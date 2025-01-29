@@ -6,7 +6,7 @@ import { useState } from "react";
 import "@/lib/i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-const Home = () => {
+const home = () => {
   const [formErrors, setFormErrors] = useState<any>({});
   const { t } = useTranslation();
 
@@ -157,4 +157,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default home;

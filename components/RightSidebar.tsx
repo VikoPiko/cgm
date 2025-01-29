@@ -2,6 +2,7 @@
 
 import i18n from "@/lib/i18n/i18n";
 import { User } from "@prisma/client";
+import Link from "next/link";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -62,7 +63,7 @@ const RightSidebar = ({ user }: { user: User }) => {
             )}
           </div>
         </div>
-        <section className="flex flex-col pb-8 mt-14">
+        <section className="flex flex-col pb-8 mt-8">
           {/* Background */}
           <div className="h-[120px] w-full bg-gradient-to-r from-blue-500 to-indigo-600 bg-cover bg-no-repeat rounded-md" />
 
@@ -87,12 +88,12 @@ const RightSidebar = ({ user }: { user: User }) => {
       <nav className="flex flex-col gap-6 px-6 mt-4">
         {" "}
         {/* Reduced margin top */}
-        <a
-          href="#"
+        <Link
+          href="/settings"
           className="text-gray-600 hover:text-blue-500 text-lg transition"
         >
           {t("accountSettings")}
-        </a>
+        </Link>
         <a
           href="#"
           className="text-gray-600 hover:text-blue-500 text-lg transition"

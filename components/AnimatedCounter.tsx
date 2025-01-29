@@ -15,7 +15,7 @@ const AnimatedCounter = ({
         duration={1.5}
         decimals={2}
         decimal=","
-        suffix={currencySymbol} // Display the dynamic currency symbol
+        suffix={currencySymbol}
         end={amount}
       />
     </div>

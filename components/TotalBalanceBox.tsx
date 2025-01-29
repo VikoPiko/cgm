@@ -31,9 +31,9 @@ const TotalBalanceBox = ({
   totalCurrentBalance,
 }: TotalBalanceBoxProps) => {
   const { t } = useTranslation();
-  const [selectedCurrency, setSelectedCurrency] = useState("BGN");
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [convertedBalance, setConvertedBalance] = useState(totalCurrentBalance);
-  const [currencySymbol, setCurrencySymbol] = useState("лв.");
+  const [currencySymbol, setCurrencySymbol] = useState("$");
 
   useEffect(() => {
     const updateConvertedBalance = async () => {
@@ -70,14 +70,16 @@ const TotalBalanceBox = ({
         <DoughnutChart />
       </div>
       <div className="flex flex-col">
-        <h2 className="text-xl font-bold ml-5">
+        <h2 className="text-xl font-bold ml-5 mt-5">
           {t("bankAccounts", {
             count: totalBanks,
           })}
           : {totalBanks}
         </h2>
-        <p className="text-gray-700 text-xl ml-5">{t("totalBalanceTitle")}</p>
-        <div className="text-5xl font-semibold mt-4">
+        <p className="text-gray-700 text-xl mt-4 ml-5 -mb-4">
+          {t("totalBalanceTitle")}
+        </p>
+        <div className="text-5xl font-semibold mt-4 ml-5 mb-4">
           <AnimatedCounter
             amount={convertedBalance}
             currencySymbol={currencySymbol}
@@ -85,7 +87,7 @@ const TotalBalanceBox = ({
         </div>
 
         {/* Currency Dropdown */}
-        <div className="mt-4 flex items-center gap-4">
+        <div className="mt-0 flex items-center gap-4 ml-5">
           <label htmlFor="currency" className="text-gray-700">
             {t("selectCurrency")}
           </label>

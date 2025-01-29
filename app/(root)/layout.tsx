@@ -8,8 +8,8 @@
 //   return <main className="flex h-screen w-full font-inter">{children}</main>;
 // }
 
+import ClientSideUserFetcher from "@/components/ClientSideUserFetcher";
 import Sidebar from "@/components/Sidebar";
-import Image from "next/image";
 
 export default async function RootLayout({
   children,
@@ -20,6 +20,7 @@ export default async function RootLayout({
     <main className="flex h-screen w-full font-inter">
       <Sidebar />
       <div className="flex size-full flex-col ">{children}</div>
+      <ClientSideUserFetcher />
     </main>
   );
 }
