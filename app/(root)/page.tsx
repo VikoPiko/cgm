@@ -6,7 +6,6 @@ import { User } from "@prisma/client";
 import { useTranslation } from "react-i18next";
 import PlaidButton from "@/components/PlaidButton";
 import PlaidToken from "@/components/PlaidToken";
-import { Router } from "next/router";
 
 const Main = () => {
   const { t } = useTranslation();
@@ -14,6 +13,7 @@ const Main = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [banks, setBanks] = useState<any[]>([]);
+  const [isLinking, setIsLinking] = useState(false); // Track whether a bank is being linked
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -46,8 +46,14 @@ const Main = () => {
     fetchUser();
   }, []);
 
+  // Function to update the banks state and reset the linking state
   const addBankToState = (newBank: any) => {
-    setBanks((prevBanks) => [...prevBanks, newBank]); // Add new bank to the list
+    setBanks((prevBanks) => [...prevBanks, newBank]);
+    setIsLinking(false); // Reset the linking state after the bank is added
+  };
+
+  const handleLinking = () => {
+    setIsLinking(true); // Set isLinking to true when the user clicks "Link Bank"
   };
 
   if (loading)
@@ -78,12 +84,17 @@ const Main = () => {
             </div>
 
             {user?.userId ? (
-              publicToken ? (
-                <PlaidToken publicToken={publicToken} userId={user.userId} />
+              isLinking ? (
+                <PlaidToken
+                  publicToken={publicToken}
+                  userId={user.userId}
+                  addBankToState={addBankToState}
+                />
               ) : (
                 <PlaidButton
                   userId={user.userId}
                   setPublicToken={setPublicToken}
+                  handleLinking={handleLinking} // Trigger the linking process
                 />
               )
             ) : (
@@ -94,7 +105,7 @@ const Main = () => {
           <div className="w-full">
             <TotalBalanceBox
               totalBanks={banks.length}
-              totalCurrentBalance={1789.99}
+              totalCurrentBalance={1789.99} // Replace with dynamic total balance calculation
               accounts={banks}
             />
           </div>

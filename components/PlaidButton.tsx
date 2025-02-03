@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 interface PlaidButtonProps {
   userId: string;
   setPublicToken: (token: string) => void;
+  handleLinking: () => void;
 }
 
 const PlaidButton: React.FC<PlaidButtonProps> = ({
   userId,
   setPublicToken,
+  handleLinking,
 }) => {
   const [linkToken, setLinkToken] = useState("");
 
@@ -49,7 +51,10 @@ const PlaidButton: React.FC<PlaidButtonProps> = ({
 
   return (
     <button
-      onClick={() => open()}
+      onClick={() => {
+        handleLinking(); // Trigger the linking process
+        open(); // Open the Plaid link flow
+      }}
       disabled={!ready}
       className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
     >

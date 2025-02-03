@@ -5,9 +5,14 @@ import { useEffect } from "react";
 interface PlaidTokenProps {
   publicToken: string;
   userId: string;
+  addBankToState: (newBank: any) => void;
 }
 
-const PlaidToken: React.FC<PlaidTokenProps> = ({ publicToken, userId }) => {
+const PlaidToken: React.FC<PlaidTokenProps> = ({
+  publicToken,
+  userId,
+  addBankToState,
+}) => {
   useEffect(() => {
     async function fetchAccessToken() {
       try {
@@ -20,7 +25,6 @@ const PlaidToken: React.FC<PlaidTokenProps> = ({ publicToken, userId }) => {
         }
 
         const payload = { public_token: publicToken, userId };
-        console.log("Sending payload:", payload); // Debugging
 
         const res = await fetch("/api/plaid/exchange-token", {
           method: "POST",
@@ -32,13 +36,16 @@ const PlaidToken: React.FC<PlaidTokenProps> = ({ publicToken, userId }) => {
 
         const data = await res.json();
         console.log("Bank added:", data.bank);
+
+        // Add the new bank to the state
+        addBankToState(data.bank);
       } catch (error) {
         console.error("Error:", error);
       }
     }
 
     if (publicToken && userId) fetchAccessToken();
-  }, [publicToken, userId]);
+  }, [publicToken, userId, addBankToState]);
 
   return <p>Bank is being linked...</p>;
 };
