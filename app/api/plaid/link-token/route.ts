@@ -6,18 +6,17 @@ import { CountryCode, Products } from "plaid";
 export async function POST(request: NextRequest) {
   try {
     //Parse request body
-    // const { userId } = await request.json();
+    const { userId } = await request.json();
 
-    // // Fetch user from the database
-    // const user = await prisma.user.findUnique({ where: { userId: userId } });
-    // if (!user) {
-    //   return NextResponse.json({ error: "User not found" }, { status: 404 });
-    // }
-
+    // Fetch user from the database
+    const user = await prisma.user.findUnique({ where: { userId: userId } });
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
     // Construct Plaid link token request
     const plaidRequest = {
       user: {
-        client_user_id: "static"
+        client_user_id: user.userId
       },
       client_name: "CGM Bank",
       products: ["auth"] as Products[],
