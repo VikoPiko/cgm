@@ -14,7 +14,6 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Invalid session" }, { status: 401 });
     }
 
-    // Fetch user details from the database
     const user = await prisma.user.findUnique({
       where: { userId: String(session.userId) },
       select: {

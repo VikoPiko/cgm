@@ -78,3 +78,45 @@ export async function deleteUser(userId: string) {
     }
   }
 
+  export async function createLinkToken() {
+    try {
+      const response = await fetch("/api/plaid/link-token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to create link token");
+      }
+  
+      const data = await response.json();
+      return data; // This returns { link_token: "your-link-token" }
+    } catch (error) {
+      console.error("Error creating link token:", error);
+      throw error;
+    }
+  }
+
+  export async function exchangePublicToken(publicToken: string) {
+    try {
+      const response = await fetch("/api/plaid/exchange-token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ public_token: publicToken }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to exchange public token");
+      }
+  
+      return await response.json(); // Returns access_token and item_id
+    } catch (error) {
+      console.error("Error exchanging public token:", error);
+      throw error;
+    }
+  }
+  

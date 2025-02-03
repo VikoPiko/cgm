@@ -14,8 +14,11 @@ const Sidebar = () => {
   const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const { t } = useTranslation(); // Use the translation hook
+  const [hasMounted, setHasMounted] = useState(false); // Track hydration
 
   useEffect(() => {
+    setHasMounted(true); // Mark as mounted to avoid hydration mismatch
+
     const fetchUser = async () => {
       try {
         const response = await fetch("/api/me");
@@ -78,7 +81,8 @@ const Sidebar = () => {
                   }
                 )}
               >
-                {t(item.label)} {/* Translate label */}
+                {hasMounted ? t(item.label) : ""}{" "}
+                {/* Prevent hydration mismatch */}
               </p>
             </Link>
           );

@@ -16,9 +16,20 @@ export default async function middleware(req: NextRequest) {
     let session: any = null;
     if (cookie) {
         session = await decrypt(cookie);
+
+        // if(!session) {
+        //     return NextResponse.redirect(new URL("/", req.nextUrl));
+        // }
+
+        // if(session?.userId) 
+        //     {
+        //         const req = await fetch("/api/auth", 
+        //             {
+        //                 method: "GET"
+        //             })
+        //     }
     }
     
-    // Only proceed with route checks if session is available
     if (isProtectedRoute && !session?.userId) {3
         return NextResponse.redirect(new URL("/home", req.nextUrl));
     }

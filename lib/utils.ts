@@ -6,7 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
 export const authFormSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
@@ -19,3 +18,5 @@ export const authFormSchema = z.object({
   ssn: z.string().min(3).max(10),
   state: z.string().min(2).max(30),
 });
+
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
