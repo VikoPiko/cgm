@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
 
     const primaryAccount = accountsResponse.data.accounts[0]; // Selecting the first account (modify as needed)
 
+
     // Store the bank in the database
     const bank = await prisma.banks.create({
       data: {

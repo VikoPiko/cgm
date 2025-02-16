@@ -14,6 +14,11 @@ const config: Config = {
 			cerulian: '#1282a2',
 			indigoDye: '#034078',
 			pennBlue: '#001F54',
+			mainText: "#040316",
+			mainBackground: "#ffffff",
+			mainPrimary: "#449cee",
+			mainSecondary: "#008fdf",
+			mainAccent: "#ff9100",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

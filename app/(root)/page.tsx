@@ -72,15 +72,17 @@ const Main = () => {
 
   return (
     <main className="flex h-screen w-full">
-      <div className="flex-1 flex flex-col bg-gray-50">
+      <div className="flex-1 flex flex-col bg-gray-50 dark:text-white dark:bg-[#121212]">
         <section className="p-6 md:p-8">
           <div className="mb-8 flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">
+              <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
                 {t("welcomeUser")}{" "}
-                <span className="text-cerulian">{user.firstName}</span>!
+                <span className="text-mainAccent ">{user.firstName}</span>!
               </h1>
-              <p className="text-gray-600 mt-2">{t("overviewSubtitle")}</p>
+              <p className="text-gray-600 dark:text-white mt-2">
+                {t("overviewSubtitle")}
+              </p>
             </div>
 
             {user?.userId ? (

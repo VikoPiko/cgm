@@ -37,20 +37,20 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <section className="sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-200 bg-white pt-8 text-black max-md:hidden sm:p-4 xl:p-6 2xl:w-[300px]">
+    <section className="sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r border-gray-200 bg-white pt-8 text-black max-md:hidden sm:p-4 xl:p-6 2xl:w-[300px] dark:bg-[#1f1f1f] dark:text-white">
       <nav className="flex flex-col gap-4">
-        <Link href="/" className="mb-12 cursor-pointer flex items-center gap-2">
-          <Image
-            src="/icons/cgm-logo.svg"
-            width={80}
-            height={80}
-            alt="CGM Logo"
-            className="size-[24px] max-xl:size-14"
-          />
-          <h1 className="2xl:text-26 font-ibm-plex-serif text-[26px] font-bold text-black-1 max-xl:hidden">
-            CGM
-          </h1>
+        <Link href="/" className="mb-20 flex justify-center items-center">
+          <div className="flex justify-center items-center w-full">
+            <Image
+              src="/logo.svg"
+              width={150}
+              height={200}
+              alt="CGM Logo"
+              className=""
+            />
+          </div>
         </Link>
+
         {sidebarLinks.map((item) => {
           const isActive =
             pathname === item.route || pathname.startsWith(`${item.route}/`);
@@ -59,9 +59,9 @@ const Sidebar = () => {
               href={item.route}
               key={item.label}
               className={cn(
-                "flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start",
+                "flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start dark:hover:bg-orange-500",
                 {
-                  "bg-[#0179FE]": isActive,
+                  "bg-mainAccent": isActive,
                 }
               )}
             >

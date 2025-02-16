@@ -33,32 +33,48 @@ const PlaidButton: React.FC<PlaidButtonProps> = ({
 
         const data = await response.json();
         setLinkToken(data.link_token);
+        console.log(data.link_token);
       } catch (err) {
         console.error("Error fetching link token:", err);
       }
     };
 
     fetchLinkToken();
-  }, [userId]);
+  }, []);
 
-  const { open, ready } = usePlaidLink({
+  const { open, ready, error } = usePlaidLink({
     token: linkToken,
-    onSuccess: (public_token) => {
+    onSuccess: (public_token, metadata) => {
       setPublicToken(public_token);
-      console.log("public_token:", public_token);
+      console.log("Public Token:", public_token);
+      console.log("Account Metadata:", metadata);
+    },
+    onExit: (err, metadata) => {
+      console.error("Plaid Link exited:", err, metadata);
+    },
+    onLoad: () => {
+      console.log("Plaid Link loaded successfully.");
     },
   });
+
+  if (error) {
+    console.error("Plaid Link error:", error);
+  }
 
   return (
     <button
       onClick={() => {
-        handleLinking(); // Trigger the linking process
-        open(); // Open the Plaid link flow
+        handleLinking();
+        if (ready) {
+          open();
+        } else {
+          console.log("Plaid Link is not ready yet.");
+        }
       }}
       disabled={!ready}
-      className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
+      className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition min-w-[140px]"
     >
-      Connect a bank account
+      Connect a bank
     </button>
   );
 };

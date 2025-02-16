@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/lib/i18n/i18n";
+import Image from "next/image";
+import { ModeToggle } from "./ThemeSwitcher";
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false); // Dropdown toggle state
@@ -22,34 +24,34 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full bg-indigoDye text-white py-3 shadow-md over">
+    <header className="w-full bg-mainBackground text-mainText py-3 shadow-md over dark:bg-[#1c1f22] dark:shadow-lg dark:shadow-gray-700">
       <nav className="mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Left Side Links */}
         <div className="flex space-x-6 text-lg font-medium">
-          <Link href="/" className="hover:underline">
+          <Link href="/" className="hover:underline dark:text-white">
             {t("personal")}
           </Link>
-          <Link href="#" className="hover:underline">
+          <Link href="#" className="hover:underline dark:text-white">
             {t("business")}
           </Link>
         </div>
 
         {/* Center Brand */}
         <Link href="/" className="text-3xl font-extrabold">
-          CGM
+          <Image src="/logo.svg" width={100} height={35} alt="CGM Bank" />
         </Link>
 
         {/* Right Side Links + Language Dropdown */}
-        <div className="flex items-center space-x-6 text-sm text-gray-300">
+        <div className="flex items-center space-x-6 text-sm text-black">
           <Link
             href="/"
-            className="hover:underline hover:text-gray-100 transition-colors"
+            className="hover:underline hover:text-mainAccent transition-colors dark:text-white"
           >
             {t("support")}
           </Link>
           <Link
             href="/"
-            className="hover:underline hover:text-gray-100 transition-colors"
+            className="hover:underline hover:text-mainAccent transition-colors dark:text-white"
           >
             {t("aboutUs")}
           </Link>
@@ -59,7 +61,7 @@ const Header = () => {
             {/* Button to Toggle Dropdown */}
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="flex items-center bg-pennBlue hover:bg-gray-600 text-white font-medium px-4 py-2 rounded-lg transition"
+              className="flex items-center bg-mainAccent hover:bg-orange-600 text-black font-medium px-4 py-2 rounded-lg transition"
             >
               <span>{t("language")}</span>
               <svg
@@ -92,6 +94,7 @@ const Header = () => {
               </ul>
             )}
           </div>
+          <ModeToggle />
         </div>
       </nav>
     </header>

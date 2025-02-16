@@ -63,7 +63,8 @@ model Accounts {
 }
 
 model Banks {
-  accountId        String @id
+  id               String @id @default(uuid())
+  accountId        String @unique
   bankId           String
   accessToken      String
   fundingSourceUrl String
