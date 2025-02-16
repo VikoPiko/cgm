@@ -36,7 +36,7 @@ const Footer = ({ user }: { user: User }) => {
         </p>
       </div>
       <button
-        className="bg-mainPrimary text-white px-6 py-2 rounded-xl hover:bg-mainSecondary transition-all ease-in-out transform hover:translate-y-[-2px] shadow-lg inline-block -mr-2"
+        className="bg-blue-500 text-white px-6 py-2 rounded-xl hover:bg-blue-600 transition-all ease-in-out transform  hover:scale-105 shadow-lg inline-block -mr-2"
         onClick={handleLogout}
       >
         {t("logoutButton")}

@@ -22,7 +22,7 @@ const PlaidButton: React.FC<PlaidButtonProps> = ({
         const response = await fetch("/api/plaid/link-token", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "content-type": "application/json",
           },
           body: JSON.stringify({ userId }),
         });
@@ -50,7 +50,10 @@ const PlaidButton: React.FC<PlaidButtonProps> = ({
       console.log("Account Metadata:", metadata);
     },
     onExit: (err, metadata) => {
-      console.error("Plaid Link exited:", err, metadata);
+      if (err) {
+        console.error("Plaid Link Error:", err);
+        console.log("Plaid exited:", metadata);
+      }
     },
     onLoad: () => {
       console.log("Plaid Link loaded successfully.");
@@ -72,7 +75,7 @@ const PlaidButton: React.FC<PlaidButtonProps> = ({
         }
       }}
       disabled={!ready}
-      className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition min-w-[140px]"
+      className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-all min-w-[140px] ease-in-out transform hover:scale-105 shadow-lg inline-block duration-200"
     >
       Connect a bank
     </button>

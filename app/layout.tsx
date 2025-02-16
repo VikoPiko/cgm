@@ -16,6 +16,14 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "CGM Bank",
   description: "Your Bank, Your Way: Anytime, Anywhere.",
+  icons: {
+    icon: [
+        {
+            url: "/icon.svg",
+            href: "/icon.svg",
+        },
+    ],
+},
 };
 
 export default function RootLayout({
