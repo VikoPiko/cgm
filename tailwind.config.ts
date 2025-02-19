@@ -10,15 +10,15 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-			skyBlue: '#88BFCF',
-			cerulian: '#1282a2',
-			indigoDye: '#034078',
-			pennBlue: '#001F54',
-			mainText: "#040316",
-			mainBackground: "#ffffff",
-			mainPrimary: "#449cee",
-			mainSecondary: "#008fdf",
-			mainAccent: "#ff9100",
+  			skyBlue: '#88BFCF',
+  			cerulian: '#1282a2',
+  			indigoDye: '#034078',
+  			pennBlue: '#001F54',
+  			mainText: '#040316',
+  			mainBackground: '#ffffff',
+  			mainPrimary: '#449cee',
+  			mainSecondary: '#008fdf',
+  			mainAccent: '#ff9100',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -58,6 +58,16 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
   			}
   		},
   		borderRadius: {
@@ -65,12 +75,11 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		  backgroundImage: {
-			"bank-gradient": "linear-gradient(90deg, #0179FE 0%, #4893FF 100%)",
-			"gradient-mesh": "url('/icons/cbg.svg')",
-			"bank-green-gradient":
-			  "linear-gradient(90deg, #01797A 0%, #489399 100%)",
-		  },
+  		backgroundImage: {
+  			'bank-gradient': 'linear-gradient(90deg, #0179FE 0%, #4893FF 100%)',
+  			'gradient-mesh': 'url(/icons/cbg.svg)',
+  			'bank-green-gradient': 'linear-gradient(90deg, #01797A 0%, #489399 100%)'
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

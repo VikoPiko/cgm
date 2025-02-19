@@ -10,7 +10,7 @@ const AnimatedCounter = ({
   currencySymbol: string;
 }) => {
   return (
-    <div className="w-full hover:text-orange-500 dark:hover:text-orange-500 transition-all ease-in-out duration-500">
+    <div className="w-full transition-all ease-in-out duration-500">
       <CountUp
         duration={1.5}
         decimals={2}

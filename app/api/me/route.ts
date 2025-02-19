@@ -5,6 +5,7 @@ import { decrypt } from "@/lib/sessions";
 export async function GET(req: NextRequest) {
   try {
     const cookie = req.cookies.get("session")?.value;
+    console.log("Session cookie:", cookie);
     if (!cookie) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
@@ -26,6 +27,7 @@ export async function GET(req: NextRequest) {
         address: true,
         city: true,
         state: true,
+        avatar: true,
       },
     });
 
@@ -36,6 +38,9 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(user, { status: 200 });
   } catch (error) {
     console.error("Error fetching user data:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

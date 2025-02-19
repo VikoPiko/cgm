@@ -66,6 +66,23 @@ export async function getUserByEmail(email: string){
     }
 }
 
+// In a utils file (e.g., `lib/user.ts` or in the `RootLayout.tsx` itself)
+export async function getUser() {
+  try {
+    const response = await fetch('http://localhost:3000/api/me');
+    if (!response.ok) {
+      throw new Error('Failed to fetch user data');
+    }
+    const user = await response.json();
+    console.log(user)
+    return user;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw error;
+  }
+}
+
+
 export async function updateUser(email: string, data: User){}
 
 export async function deleteUser(userId: string) {

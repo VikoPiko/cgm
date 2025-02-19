@@ -26,6 +26,7 @@ model User {
   ssn          String
   state        String
   createdAt    DateTime      @default(now())
+  avatar       String   @default("/3.jpg")
   transactions Transaction[]
   Banks        Banks[]
   Loans        Loans[]

@@ -95,7 +95,7 @@ const TotalBalanceBox = ({
             id="currency"
             value={selectedCurrency}
             onChange={(e) => setSelectedCurrency(e.target.value)}
-            className="px-4 py-2 rounded-md border dark:hover:bg-mainAccent transition-all ease-in-out duration-300 dark:hover:text-black"
+            className="px-4 py-2 rounded-md border transition-all ease-in-out duration-300 dark:hover:text-black"
           >
             <option value="BGN">BGN - Bulgarian Lev</option>
             <option value="USD">USD - US Dollar</option>
