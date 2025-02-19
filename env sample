@@ -1,0 +1,16 @@
+#Database dependencies - prisma / edit schema.prisma (default set provider - MySql)
+DATABASE_URL=
+SESSIONS_SECRET=
+#PLAID - securely connect banking accounts (allows users to connect banks)
+PLAID_CLIENT_ID=
+PLAID_SECRET=
+PLAID_ENV=sandbox
+PLAID_PRODUCTS=auth,transactions,identity
+PLAID_COUNTRY_CODES=
+#DWOLLA - payment processor (allows for transfering funds - ACH )
+DWOLLA_KEY=
+DWOLLA_SECRET=
+DWOLLA_BASE_URL=https://api-sandbox.dwolla.com
+DWOLLA_ENV=sandbox
+#UPLOADTHING - allows for secure file uploads on the cloud (can be configured in app/api/uploadthing/core.ts).
+UPLOADTHING_TOKEN=
