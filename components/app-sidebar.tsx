@@ -55,7 +55,7 @@ export function AppSidebar() {
       }
     };
     fetchUser();
-  }, []);
+  }, [user?.avatar]);
 
   const data = {
     user: {

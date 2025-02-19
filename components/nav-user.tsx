@@ -30,17 +30,17 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "./ui/button";
-import { t } from "i18next";
+// import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import { User } from "@prisma/client";
 
-interface UserProps {
-  user: {
-    firstName: string;
-    email: string;
-    avatar: string;
-  };
-}
+// interface UserProps {
+//   user: {
+//     firstName: string;
+//     email: string;
+//     avatar: string;
+//   };
+// }
 
 export function NavUser({ user} : {user: User}) {
   const { isMobile } = useSidebar();

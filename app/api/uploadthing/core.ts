@@ -1,43 +1,63 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
+import prisma from "@/lib/prisma";
+import { decrypt } from "@/lib/sessions";
+import { revalidatePath } from "next/cache";
 
 const f = createUploadthing();
 
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
+const auth = async (req: Request): Promise<{ id: string } | null> => {
+  try {
+    const cookieHeader = req.headers.get("cookie");
+    if (!cookieHeader) return null;
 
-// FileRouter for your app, can contain multiple FileRoutes
+    const match = cookieHeader.match(/session=([^;]+)/);
+    if (!match) return null;
+
+    const sessionCookie = match[1];
+    const session = await decrypt(sessionCookie);
+
+    if (!session?.userId) return null;
+
+    return { id: String(session.userId) }; // Ensure userId is a string
+  } catch (error) {
+    console.error("Auth error:", error);
+    return null;
+  }
+};
+
 export const ourFileRouter = {
-  // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({
     image: {
-      /**
-       * For full list of options and defaults, see the File Route API reference
-       * @see https://docs.uploadthing.com/file-routes#route-config
-       */
       maxFileSize: "4MB",
       maxFileCount: 1,
+      minFileCount: 1
     },
   })
-    // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
-      // This code runs on your server before upload
       const user = await auth(req);
 
-      // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");
-
-      // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return { userId: user.id };
+      
+      return { userId: user.id }; // Explicitly return string
     })
     .onUploadComplete(async ({ metadata, file }) => {
-      // This code RUNS ON YOUR SERVER after upload
       console.log("Upload complete for userId:", metadata.userId);
 
-      console.log("file url", file.url);
+      const imageUrl = file.ufsUrl;
 
-      // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: metadata.userId };
+      // Store the uploaded image URL in the database
+      await prisma.user.update({
+        where: { userId: metadata.userId }, // Ensure userId is treated as a string
+        data: { avatar: imageUrl },
+      });
+      return {
+        name: file.name,
+        key: file.key,
+        url: imageUrl,
+        uploaderId: metadata.userId, // Ensure this is a string
+      } as const; // Explicitly set as a valid JSON object
     }),
-} satisfies FileRouter;
-
+  } satisfies FileRouter;
+  
 export type OurFileRouter = typeof ourFileRouter;
