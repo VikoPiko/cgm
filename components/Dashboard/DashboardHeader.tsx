@@ -34,7 +34,7 @@ const DashboardHeader = () => {
       {/* Centered Logo */}
       <div className="flex-1 flex justify-center hover:scale-105 hover:-translate-y-[2px] transition-all duration-200 ease-in-out">
         <Link href="/">
-          <Image src="/logo2.svg" width={75} height={40} alt="logo" />
+          <Image src="/logo2.svg" width={75} height={40} alt="logo" priority />
         </Link>
       </div>
 

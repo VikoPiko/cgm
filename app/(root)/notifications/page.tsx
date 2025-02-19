@@ -1,9 +1,10 @@
+import Upload from '@/components/UploadThing'
 import React from 'react'
 
 const Notifications = () => {
   return (
     <div>
-      Notifications
+      <Upload/>
     </div>
   )
 }
