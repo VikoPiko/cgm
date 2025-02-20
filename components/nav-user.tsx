@@ -33,6 +33,9 @@ import { Button } from "./ui/button";
 // import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import { User } from "@prisma/client";
+import { useUser } from "./UserContext";
+import { useEffect } from "react";
+import Link from "next/link";
 
 // interface UserProps {
 //   user: {
@@ -42,7 +45,9 @@ import { User } from "@prisma/client";
 //   };
 // }
 
-export function NavUser({ user} : {user: User}) {
+// NavUser.tsx
+export function NavUser({ user }: { user: User }) {
+
   const { isMobile } = useSidebar();
   const { t } = useTranslation();
 
@@ -80,8 +85,8 @@ export function NavUser({ user} : {user: User}) {
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user?.firstName}</span>
-                <span className="truncate text-xs">{user?.email}</span>
+                <span className="truncate font-medium">{user?.firstName}</span>
+                <span className="truncate text-xs font-thin dark:text-stone-300 text-stone-600">{user?.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -102,36 +107,38 @@ export function NavUser({ user} : {user: User}) {
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user?.firstName}</span>
-                  <span className="truncate text-xs">{user?.email}</span>
+                  <span className="truncate font-medium">{user?.firstName}</span>
+                  <span className="truncate text-xs dark:text-stone-400 text-stone-500">{user?.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
+                <Sparkles className="text-blue-600 dark:text-blue-400"/>
                 {t("upgradeToPro")}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
+              <Link href="/account">
+              <DropdownMenuItem >
+                <BadgeCheck className="text-blue-600 dark:text-blue-400"/>
                 {t("account")}
               </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
-                <CreditCard />
+                <CreditCard className="text-blue-600 dark:text-blue-400"/>
                 {t("billing")}
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell />
+                <Bell className="text-blue-600 dark:text-blue-400"/>
                 {t("notifications")}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout}>
-              <LogOut />
+              <LogOut className="text-blue-600 dark:text-blue-400"/>
               {t("logoutButton")}
             </DropdownMenuItem>
           </DropdownMenuContent>

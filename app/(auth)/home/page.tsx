@@ -11,13 +11,13 @@ const home = () => {
   const { t } = useTranslation();
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
-    const formData = new FormData(event.target as HTMLFormElement); // Capture form data
+    const formData = new FormData(event.target as HTMLFormElement);
     const result = await login({}, formData); // Call login with the form data
 
     if (result.errors) {
-      setFormErrors(result.errors); // Set errors if validation fails
+      setFormErrors(result.errors);
     }
     window.location.reload();
   };

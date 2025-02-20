@@ -42,6 +42,8 @@
     "selectCurrency": "Para Birimi Seçin",
     "bankAccounts_one": "Banka Hesabı",
     "bankAccounts_other": "Banka Hesapları",
-    "addBankButton": "Banka Ekle"
+    "addBankButton": "Banka Ekle",
+    "notificationsRoute": "Bildirimler",
+    "settingsRoute": "Ayarlar"
   }
   

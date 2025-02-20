@@ -42,6 +42,12 @@
     "bankAccounts_one": "Bank Account",
     "bankAccounts_other": "Bank Accounts",
     "selectCurrency": "Select Currency",
-    "addBankButton": "Add Bank"
+    "addBankButton": "Connect Bank",
+    "notificationsRoute": "Notifications",
+    "settingsRoute": "Settings",
+    "billing": "Billing",
+    "account": "Account",
+    "notifications": "Notifications",
+    "upgradeToPro": "Upgrade To Pro"
   }
   

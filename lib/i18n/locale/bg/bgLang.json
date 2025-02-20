@@ -40,6 +40,8 @@
     "transactionHistory": "История на транзакциите",
     "transferFunds": "Прехвърляне на средства",
     "selectCurrency": "Изберете Валута",
-    "addBankButton": "Добави банка"
+    "addBankButton": "Добави банка",
+    "notificationsRoute": "Известия",
+    "settingsRoute": "Настройки"
   }
   

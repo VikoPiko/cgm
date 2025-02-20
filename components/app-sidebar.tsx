@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Sidebar,
   SidebarContent,
@@ -9,107 +10,57 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import {
-  Calendar,
-  ChevronUp,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-  User2,
-} from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 import Link from "next/link";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "./ui/collapsible";
-import { NavUser } from "./nav-user";
-import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useUser } from "@/components/UserContext";
+import { useTranslation } from "react-i18next";
+import { sidebarLinks } from "@/index";
+import { cn } from "@/lib/utils";
+import { NavUser } from "@/components/nav-user";
 
 export function AppSidebar() {
-  const [user, setUser] = useState<User | null>(null);
+  const pathname = usePathname();
+  const user = useUser();
+  const { t } = useTranslation();
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch("/api/me");
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data);
-        } else {
-          console.error("Failed to fetch user data");
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-    fetchUser();
-  }, [user?.avatar]);
-
-  const data = {
-    user: {
-      firstName: "user.firstName",
-      email: "user.email",
-      avatar: "/3.jpg",
-    },
-  };
-
-  const items = [
-    {
-      title: "Home",
-      url: "/",
-      icon: Home,
-    },
-    {
-      title: "My Banks",
-      url: "/my-banks",
-      icon: Inbox,
-    },
-    {
-      title: "Transfers",
-      url: "/payment-transfer",
-      icon: Calendar,
-    },
-    {
-      title: "Settings",
-      url: "/settings",
-      icon: Settings,
-    },
-    {
-      title: "Notifications",
-      url: "/notifications",
-      icon: Settings,
-    },
-  ];
+    setHasMounted(true);
+  }, []);
 
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>DevTest</SidebarGroupLabel>
+          <SidebarGroupLabel className="p-4 pb-6 font-medium text-stone-700 ">CGM Bank</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {sidebarLinks.map((item) => {
+                const isActive =
+                  pathname === item.route ||
+                  pathname.startsWith(`${item.route}/`);
+
+                return (
+                  <SidebarMenuItem key={item.label}>
+                    <SidebarMenuButton asChild>
+                      <Link
+                        href={item.route}
+                        className={cn(
+                          "flex items-center gap-3 p-2 rounded-lg",
+                          { "bg-stone-200 dark:bg-[#484848]": isActive }
+                        )}
+                      >
+                        <item.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        <span className={cn({ "!text-black dark:!text-white": isActive })}>
+                          {hasMounted ? t(item.label, item.label) : ""}
+                        </span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

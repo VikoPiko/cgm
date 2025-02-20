@@ -63,7 +63,7 @@ const Header = () => {
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="flex items-center bg-mainAccent hover:bg-orange-600 text-black font-medium px-4 py-2 rounded-lg transition"
             >
-              <span>{t("language")}</span>
+              <span className=" min-w-[65px]">{t("language")}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="ml-2 h-5 w-5"

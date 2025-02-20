@@ -1,22 +1,35 @@
+import { Home, Banknote, History, Send, BellRing, Settings } from "lucide-react";
+
 export const sidebarLinks = [
   {
-    imgURL: "/icons/home.svg",
+    icon: Home,
     route: "/",
-    label: "home",  // Translateable key
+    // Translateable key
+    label: "home", 
   },
   {
-    imgURL: "/icons/dollar-circle.svg",
+    icon: Banknote,
     route: "/my-banks",
-    label: "myBanks",  // Translateable key
+    label: "myBanks",
   },
   {
-    imgURL: "/icons/transaction.svg",
+    icon: History,
     route: "/transaction-history",
-    label: "transactionHistory",  // Translateable key
+    label: "transactionHistory",
   },
   {
-    imgURL: "/icons/money-send.svg",
+    icon: Send,
     route: "/payment-transfer",
-    label: "transferFunds",  // Translateable key
+    label: "transferFunds",
+  },
+  {
+    icon: BellRing,
+    route: "/notifications",
+    label: "notificationsRoute",
+  },
+  {
+    icon: Settings,
+    route: "/settings",
+    label: "settingsRoute",
   },
 ];
