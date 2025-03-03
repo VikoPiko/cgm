@@ -3,7 +3,7 @@
     "heroTitle": "CGM | Bağlan. Büyüt. Yönet.",
     "heroSubtitle": "Tüm bankacılık ihtiyaçlarınızı tek bir yerde merkezileştirin.",
     "signUpButton": "Kaydol",
-    "loginBoxTitle": "Tekrar Hoş Geldiniz!",
+    "loginBoxTitle": "Hoş Geldiniz!",
     "emailLabel": "E-posta",
     "emailPlaceholder": "E-postanızı girin",
     "emailError": "Geçersiz e-posta adresi.",
@@ -44,6 +44,8 @@
     "bankAccounts_other": "Banka Hesapları",
     "addBankButton": "Banka Ekle",
     "notificationsRoute": "Bildirimler",
-    "settingsRoute": "Ayarlar"
+    "settingsRoute": "Ayarlar",
+    "incomeThisMonth": "Bu Ayki Gelir",
+    "spentThisMonth": "Bu Ayki Harcama"
   }
   

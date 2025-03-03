@@ -3,7 +3,7 @@
     "heroTitle": "CGM | Свържи се. Расти. Управлявай.",
     "heroSubtitle": "Централизирайте всички свои банкови нужди на едно място.",
     "signUpButton": "Регистрирай се",
-    "loginBoxTitle": "Добре дошли отново!",
+    "loginBoxTitle": "Добре дошли!",
     "emailLabel": "Имейл",
     "emailPlaceholder": "Въведете своя имейл",
     "emailError": "Невалиден имейл адрес.",
@@ -42,6 +42,8 @@
     "selectCurrency": "Изберете Валута",
     "addBankButton": "Добави банка",
     "notificationsRoute": "Известия",
-    "settingsRoute": "Настройки"
-  }
+    "settingsRoute": "Настройки",
+    "incomeThisMonth": "Приходи този месец",
+    "spentThisMonth": "Разходи този месец"
+}
   

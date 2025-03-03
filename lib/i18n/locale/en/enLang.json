@@ -2,8 +2,8 @@
     "welcomeMessage": "Welcome",
     "heroTitle": "CGM | Connect. Grow. Manage.",
     "heroSubtitle": "Centralize all of your banking needs in one place.",
-    "signUpButton": "Sign Up",
-    "loginBoxTitle": "Welcome Back!",
+    "signUpButton": "Register",
+    "loginBoxTitle": "Welcome!",
     "emailLabel": "Email",
     "emailPlaceholder": "Enter your email",
     "emailError": "Invalid email address.",
@@ -48,6 +48,8 @@
     "billing": "Billing",
     "account": "Account",
     "notifications": "Notifications",
-    "upgradeToPro": "Upgrade To Pro"
+    "upgradeToPro": "Upgrade To Pro",
+    "incomeThisMonth": "Income This Month",
+    "spentThisMonth": "Spent This Month"
   }
   

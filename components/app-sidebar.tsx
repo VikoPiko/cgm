@@ -34,7 +34,9 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="p-4 pb-6 font-medium text-stone-700 ">CGM Bank</SidebarGroupLabel>
+          <SidebarGroupLabel className="p-4 pb-6 font-medium text-lg items-center justify-center text-stone-800 dark:text-white">
+            CGM Bank
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {sidebarLinks.map((item) => {
@@ -53,7 +55,11 @@ export function AppSidebar() {
                         )}
                       >
                         <item.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                        <span className={cn({ "!text-black dark:!text-white": isActive })}>
+                        <span
+                          className={cn({
+                            "!text-black dark:!text-white": isActive,
+                          })}
+                        >
                           {hasMounted ? t(item.label, item.label) : ""}
                         </span>
                       </Link>

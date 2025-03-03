@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "local": "npx next dev -H 0.0.0.0 -p 3000"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -26,7 +27,8 @@
     "chart.js": "^4.4.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "i18next": "^24.2.1",
+    "framer-motion": "^12.4.7",
+    "i18next": "^24.2.2",
     "jose": "^5.9.6",
     "lucide-react": "^0.471.2",
     "moment": "^2.30.1",
@@ -39,7 +41,7 @@
     "react-countup": "^6.5.3",
     "react-dom": "^18",
     "react-hook-form": "^7.54.2",
-    "react-i18next": "^15.4.0",
+    "react-i18next": "^15.4.1",
     "react-icons": "^5.4.0",
     "react-plaid-link": "^3.6.1",
     "recharts": "^2.15.1",
@@ -54,6 +56,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "axios": "^1.8.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.16",
     "postcss": "^8",

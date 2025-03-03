@@ -4,7 +4,7 @@ import { decrypt } from "@/lib/sessions";
 import { useLayoutEffect } from "react";
 
 const protectedRoutes = ["/"];
-const publicRoutes = ["/sign-in", "/sign-up", "/home"];
+const publicRoutes = ["/sign-in", "/sign-up", "/home", "/new-home"];
 
 export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
@@ -35,7 +35,7 @@ export default async function middleware(req: NextRequest) {
     }
     
     if (isProtectedRoute && !session?.userId) {3
-        return NextResponse.redirect(new URL("/home", req.nextUrl));
+        return NextResponse.redirect(new URL("/new-home", req.nextUrl));
     }
 
     if (isPublicRoute && session?.userId) {
